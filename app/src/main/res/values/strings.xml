@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">KlarnaWeather</string>
+    <string name="error_loading_data">Error Loading Weater Data</string>
+</resources>
