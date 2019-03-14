@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mLoadingProgress = (ProgressBar) findViewById(R.id.progressBar);
         try {
-            URL bookUrl = UtilJson.buildUrl("58.557945,17.428562");
-            new WeaterQueryTask().execute(bookUrl);
+            URL weatherUrl = UtilJson.buildUrl("59.251571,18.176707"); // Finserudsgränd 7 , Älta My Place :)
+            new WeaterQueryTask().execute(weatherUrl);
 
         }
         catch (Exception e) {
@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             String resultString = timezone +"\nDate: " + dateAsText +"\n" +summary+"\nTemp: "+temperature +"\u00b0";
 
             tvResult.setText(resultString);
-            // Beta alfa
         }
         @Override
         protected  void onPreExecute(){
