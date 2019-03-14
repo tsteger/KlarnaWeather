@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             String resultString = timezone +"\nDate: " + dateAsText +"\n" +summary+"\nTemp: "+temperature +"\u00b0";
 
             tvResult.setText(resultString);
-            // Beta
+            // Beta alfa
         }
         @Override
         protected  void onPreExecute(){
