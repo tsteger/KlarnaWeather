@@ -72,20 +72,18 @@ public class MainActivity extends AppCompatActivity {
             catch(NumberFormatException ex) {
                 time = 0;
             }
-            double temperature;
+            String strTemp;
             try {
-                temperature = Double.parseDouble(weaters.get(0).temperature.replace(',','.'));
+                double temperature = Double.parseDouble(weaters.get(0).temperature.replace(',','.'));
                 temperature = ((temperature-32) * 5)/9;
-                DecimalFormat df = new DecimalFormat("#0.#");
-                temperature = Double.valueOf(df.format(temperature));
-
+                strTemp = String.format("%.1f", temperature);
             }
             catch(NumberFormatException ex) {
-                temperature = 0;
+                strTemp = "";
             }
             String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                     .format(new Date(time * 1000L));
-            String resultString = timezone +"\nDate: " + dateAsText +"\n" +summary+"\nTemp: "+temperature +"\u00b0";
+            String resultString = timezone +"\nDate: " + dateAsText +"\n" +summary+"\nTemp: "+strTemp +"\u00b0";
 
             tvResult.setText(resultString);
         }
