@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
             String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                     .format(new Date(time * 1000L));
-            String resultString = timezone +"\n" + dateAsText +"\n" +summary+"\nTemp: "+temperature +"\u00b0";
+            String resultString = timezone +"\nDate: " + dateAsText +"\n" +summary+"\nTemp: "+temperature +"\u00b0";
 
             tvResult.setText(resultString);
             // Beta
