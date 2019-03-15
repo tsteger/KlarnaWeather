@@ -3,7 +3,6 @@ package com.example.tommy.klarnaweather;
 import android.net.Uri;
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,11 +16,11 @@ import java.util.Scanner;
 public class UtilJson {
     private UtilJson(){}
 
-    public static final String JSON_URL =
+    private static final String JSON_URL =
             "https://api.darksky.net/forecast/2bb07c3bece89caf533ac9a5d23d8417/";
 
 
-    public static URL buildUrl (String coordinates){
+    protected static URL buildUrl (String coordinates){
 
         URL url = null;
         Uri uri = Uri.parse(JSON_URL).buildUpon()
@@ -35,7 +34,7 @@ public class UtilJson {
         }
         return url;
     }
-    public static String getJson(URL url) throws IOException {
+    protected static String getJson(URL url) throws IOException {
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -59,30 +58,30 @@ public class UtilJson {
         }
     }
 
-    public static ArrayList<Weater>getWeaterFromJson(String json){
+    protected static ArrayList<Weather>getWeaterFromJson(String json){
         final String TIMEZONE = "timezone";
         final String TIME = "time";
         final String SUMMARY = "summary";
         final String TEMPERATURE = "temperature";
         final String ITEMS = "currently";
 
-        ArrayList<Weater> weater=new ArrayList<>();
+        ArrayList<Weather> weathers =new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(json);
             JSONObject currently = jsonObject.getJSONObject(ITEMS);
-            Weater w = new Weater(
+            Weather weather = new Weather(
                     jsonObject.getString(TIMEZONE),
                     currently.getString(TIME),
                     currently.getString(TEMPERATURE),
                     currently.getString(SUMMARY)
 
             );
-            weater.add(w);
+            weathers.add(weather);
         }
         catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return weater;
+        return weathers;
     }
 }

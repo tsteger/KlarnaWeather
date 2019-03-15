@@ -27,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
         mLoadingProgress = (ProgressBar) findViewById(R.id.progressBar);
         try {
             URL weatherUrl = UtilJson.buildUrl("59.251571,18.176707"); // Finserudsgränd 7 , Älta My Place :)
-            new WeaterQueryTask().execute(weatherUrl);
+            new WeatherQueryTask().execute(weatherUrl);
 
         }
         catch (Exception e) {
             Log.d("error", e.getMessage());
         }
     }
-    public class WeaterQueryTask extends AsyncTask<URL,Void, String> {
+    public class WeatherQueryTask extends AsyncTask<URL,Void, String> {
         @Override
         protected String doInBackground(URL... urls) {
             URL searchURL = urls[0];
@@ -62,19 +62,19 @@ public class MainActivity extends AppCompatActivity {
                 tvError.setVisibility(View.INVISIBLE);
             }
             //tvResult.setText(result);
-            ArrayList<Weater> weaters = UtilJson.getWeaterFromJson(result);
-            String timezone     = weaters.get(0).timezone;
-            String summary      = weaters.get(0).summary;
+            ArrayList<Weather> weather = UtilJson.getWeaterFromJson(result);
+            String timezone     = weather.get(0).timezone;
+            String summary      = weather.get(0).summary;
             int time;
             try{
-                time = Integer.parseInt(weaters.get(0).time);
+                time = Integer.parseInt(weather.get(0).time);
             }
             catch(NumberFormatException ex) {
                 time = 0;
             }
             String strTemp;
             try {
-                double temperature = Double.parseDouble(weaters.get(0).temperature.replace(',','.'));
+                double temperature = Double.parseDouble(weather.get(0).temperature.replace(',','.'));
                 temperature = ((temperature-32) * 5)/9;
                 strTemp = String.format("%.1f", temperature);
             }
